@@ -1,0 +1,19 @@
+{
+  "material-icon-theme.activeIconPack": "nest",
+  "material-icon-theme.folders.associations": {
+    "strategy": "utils",
+    "strategys": "utils",
+    "infra": "config",
+    "useCases": "controller",
+    "dtos": "typescript",
+    "presenters": "typescript",
+    "repositories": "database",
+    "implementations": "controller"
+  },
+  "cSpell.words": [
+    "encrypter",
+    "Encrypter",
+    "hasher",
+    "strategys"
+  ]
+}

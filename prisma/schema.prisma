@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum InformationType {
+  FAKER
+  REAL
+}
+
+model Information {
+  id              String          @unique @default(uuid())
+  name            String          @unique
+  information     String
+  informationType InformationType @default(FAKER) @map("information_type")
+  createdAt       DateTime        @default(now()) @map("created_at")
+  updatedAt       DateTime?       @updatedAt @map("updated_at")
+  tableId         String?         @map("table_id")
+
+  table Table? @relation(fields: [tableId], references: [id])
+
+  @@map("Information")
+}
+
+model Table {
+  id           String    @unique @default(uuid())
+  name         String    @unique
+  passwordHash String    @map("password_hash")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime? @updatedAt @map("updated_at")
+
+  informations Information[]
+
+  @@map("tables")
+}

@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:3030
+@authToken =  {{createReal.response.body.access_token}}
+
+# @name createFaker
+POST {{baseUrl}}/faker
+Content-Type: application/json
+
+{
+  "name": "Earth lenght",
+  "lie": "Earth has 56 millions kilomters"
+}
+
+###
+
+# @name createReal
+POST {{baseUrl}}/real
+Content-Type: application/json
+
+{
+  "name": "Wather",
+  "true": "Wather formule is H20"
+}
+
+###
+
+# @name joinInTalbe
+POST {{baseUrl}}/tables/join
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "table of true"
+}
+
+###
+
+# @name createTalbe
+POST {{baseUrl}}/tables
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "table of true"
+}
